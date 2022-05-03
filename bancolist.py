@@ -1,4 +1,4 @@
-from src.Conta.conta import Conta
+from conta import Conta
 
 
 class BancoList:
@@ -8,10 +8,10 @@ class BancoList:
     def cadastrar(self, conta: Conta):
         self.conta.append= conta
 
-    def procurar_conta(self, numero):
+    def procurar_conta(self, numero: object) -> object:
         achou = False
         for conta in self.conta:
-            if conta.get_numero() == numero
+            if conta.get_numero() == numero:
                 achou = True
                 return conta
 
@@ -19,7 +19,11 @@ class BancoList:
                 return None
 
     def creditar(self, numero, valor):
-        pass
+        conta = self.procurar_conta(numero)
+        if conta:
+            conta.creditar(valor)
+        else:
+            print("Conta inexistente!")
 
     def debitar(self, numero, valor):
         conta = self.procurar_conta(numero)
@@ -29,10 +33,14 @@ class BancoList:
             print("Conta inexistente!")
 
     def saldo(self, numero):
-        pass
-
-    def saldo(self, numero):
-        pass
+        conta = self.procurar_conta(numero)
+        if conta:
+            conta.get_saldo()
+        else:
+            print ("Conta inexistente!")
+     
 
     def transferir(self, origem, destino, valor):
-        pass
+        conta = self.procurar_conta(valor)
+        if conta:
+            
